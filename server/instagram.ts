@@ -2,7 +2,7 @@ import { GenezioDeploy } from "@genezio/types";
 import { IgApiClient } from "instagram-private-api";
 import { readFile } from 'fs';
 import { promisify } from 'util';
-const readFileAsync = promisify(readFile);
+import axios from "axios";
 
 @GenezioDeploy()
 export class InstagramService {
@@ -30,7 +30,11 @@ export class InstagramService {
 
     }
 
-    async uploadPhoto(customCaption: string) {
+    async getImageBuffer(url: string){
+        return (await axios.get(url, {responseType: 'arraybuffer'})).data;
+    }
+
+    async uploadPhoto(customCaption: string, imageUrl: string) {
         try {
             this.ig.state.generateDevice(`${this.instagramUser}`);
             
@@ -38,20 +42,11 @@ export class InstagramService {
             await this.ig.account.login(`${this.instagramUser}`, `${this.instagramPassword}`);
             process.nextTick(async () => await this.ig.simulate.postLoginFlow());
 
-
-            const path = "../client/src/assets/test.jpg";
-            const { latitude, longitude } = {
-                latitude: 0.0,
-                longitude: 0.0,
-            };
-
-            const locations = await this.ig.search.location(latitude, longitude);
-
-            const mediaLocation = locations[0];
-            console.log(mediaLocation);
+            const data = await this.getImageBuffer(imageUrl)
+            const imageBuffer = Buffer.from(data, 'binary');
 
             const publishResult = await this.ig.publish.photo({
-                file: await readFileAsync(path),
+                file: imageBuffer,
                 caption: customCaption,
               });
             
@@ -62,30 +57,40 @@ export class InstagramService {
         }
     }
 
-    async uploadStory() {
+
+    async testst(){
+        return axios.get("https://picsum.photos/800/800", {
+            responseType: 'arraybuffer'
+         })
+        .then(response => {
+            const buffer = Buffer.from(response.data, 'base64');
+            return buffer;
+        })
+        .catch(ex => {
+            console.error(ex);
+        });
+    }
+
+    async uploadStory(imageUrl: string) {
         try {
             this.ig.state.generateDevice(`${this.instagramUser}`);
             
             await this.ig.simulate.preLoginFlow();
             await this.ig.account.login(`${this.instagramUser}`, `${this.instagramPassword}`);
             process.nextTick(async () => await this.ig.simulate.postLoginFlow());
-      
-            const path = "../client/src/assets/test.jpg";
-            const file = await readFileAsync(path);
-      
-      
-            
-            console.log(file);
-      
+  
+            const data = await this.getImageBuffer(imageUrl)
+            const file = Buffer.from(data, 'binary');
+
             const result = await this.ig.publish.story({
-              file,
+                file,
             });
       
             return result;
       
           } catch (error) {
             console.log(error);
-            return "error";
+            return error;
           }
     }
 

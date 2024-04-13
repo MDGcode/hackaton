@@ -1,12 +1,14 @@
-import { GenezioDeploy, GenezioMethod } from "@genezio/types";
-import { IgApiClient } from "instagram-private-api";
-import { promisify } from "util";
-import { readFile } from 'fs';
-const readFileAsync = promisify(readFile);
+import { GenezioDeploy,  GenezioMethod } from "@genezio/types";
+
 
 @GenezioDeploy()
 export class BackendService {
 
   constructor(){}
+
+  @GenezioMethod({ type: "cron", cronString: "* * * * *" })
+  async openDB(){
+    console.log("doar test");
+  }
 
 }
