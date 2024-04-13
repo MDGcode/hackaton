@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// data_ora DATETIME = 'YYYY-MM-DD HH:MM:SS'
+model createPost {
+  id int @id @default(autoincrement());
+  data_ora DATETIME;
+  typeOfPost string;
+  appType string;
+  idImage? int;
+  idAccount? string;
+}
+
+model ImageStorage{
+  id int @id;
+  url string;
+}
+
+model posts {
+  id int @id
+  data_ora DATETIME
+  typeOfPost string;
+  addType string;
+  appType string;
+}
+
