@@ -1,9 +1,9 @@
-import React from "react";
+import TweetText from "../components/TweetText";
 
 export default function Home() {
   return (
     <>
-      <div className=" text-xl flex justify-center">Home</div>
+      <TweetText />
     </>
   );
 }
