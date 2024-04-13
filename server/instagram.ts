@@ -1,6 +1,7 @@
 import { GenezioDeploy } from "@genezio/types";
 import { IgApiClient } from "instagram-private-api";
 import axios from "axios";
+import { PrismaClient } from "@prisma/client";
 
 @GenezioDeploy()
 export class InstagramService {
@@ -9,12 +10,15 @@ export class InstagramService {
     private instagramUser;
     private instagramPassword;
 
+    private prisma: PrismaClient;
+
     constructor(){
         this.ig = new IgApiClient();
 
         this.instagramUser = "ceva7700";
         this.instagramPassword = "aoleusufletu1";
 
+        this.prisma = new PrismaClient();
     }
 
     async setAccount(username: string, password: string){
@@ -55,19 +59,6 @@ export class InstagramService {
         }
     }
 
-
-    async testst(){
-        return axios.get("https://picsum.photos/800/800", {
-            responseType: 'arraybuffer'
-         })
-        .then(response => {
-            const buffer = Buffer.from(response.data, 'base64');
-            return buffer;
-        })
-        .catch(ex => {
-            console.error(ex);
-        });
-    }
 
     async uploadStory(imageUrl: string) {
         try {

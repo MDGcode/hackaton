@@ -14,19 +14,25 @@ datasource db {
 }
 
 model CreatePost {
-  id         Int        @id @default(autoincrement())
+  id         Int          @id @default(autoincrement())
   data_ora   DateTime
   typeOfPost String
   appType    String
   idImage    Int?
-  idAccount  Int?
-  Account    Account?   @relation(fields: [idAccount], references: [id])
+  idAccount  String
+  AccountInfo AccountInfo? @relation(fields: [idAccount], references: [userId])
   ImageStorage ImageStorage? @relation(fields: [idImage], references: [id])
 }
 
-model Account {
-  id     Int    @id @default(autoincrement())
+model AccountInfo {
+  id Int @id @default(autoincrement())
   userId String @unique
+  userNameIg String?
+  userNamePsw String?
+  appKeyTwitter String?
+  appSecretTwitter String?
+  accessTokenTwitter String?
+  accessSecretTwitter String?
   CreatePosts CreatePost[]
 }
 
