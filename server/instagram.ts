@@ -1,8 +1,7 @@
-import { GenezioDeploy } from "@genezio/types";
+import { GenezioDeploy, } from "@genezio/types";
 import { IgApiClient } from "instagram-private-api";
-import { readFile } from 'fs';
-import { promisify } from 'util';
 import axios from "axios";
+import { PrismaClient } from "@prisma/client";
 
 @GenezioDeploy()
 export class InstagramService {
@@ -11,23 +10,31 @@ export class InstagramService {
     private instagramUser;
     private instagramPassword;
 
+    private prisma: PrismaClient;
+
     constructor(){
         this.ig = new IgApiClient();
 
+        // Ig Account for Testing
         this.instagramUser = "ceva7700";
         this.instagramPassword = "aoleusufletu1";
 
+        this.prisma = new PrismaClient();
     }
 
     async setAccount(username: string, password: string){
-        this.instagramUser = username;
-        this.instagramPassword = password;
+        try {
+            this.instagramUser = username;
+            this.instagramPassword = password;
+        } catch (error) {
+            console.log(error);
+            return error;
+        }
     }
 
     async login(){
         this.ig.state.generateDevice(`${this.instagramUser}`);
         await this.ig.account.login(this.instagramUser, this.instagramPassword);
-
     }
 
     async getImageBuffer(url: string){
@@ -39,7 +46,7 @@ export class InstagramService {
             this.ig.state.generateDevice(`${this.instagramUser}`);
             
             await this.ig.simulate.preLoginFlow();
-            await this.ig.account.login(`${this.instagramUser}`, `${this.instagramPassword}`);
+            await this.ig.account.login(this.instagramUser, this.instagramPassword);
             process.nextTick(async () => await this.ig.simulate.postLoginFlow());
 
             const data = await this.getImageBuffer(imageUrl)
@@ -57,26 +64,13 @@ export class InstagramService {
         }
     }
 
-
-    async testst(){
-        return axios.get("https://picsum.photos/800/800", {
-            responseType: 'arraybuffer'
-         })
-        .then(response => {
-            const buffer = Buffer.from(response.data, 'base64');
-            return buffer;
-        })
-        .catch(ex => {
-            console.error(ex);
-        });
-    }
-
     async uploadStory(imageUrl: string) {
         try {
+
             this.ig.state.generateDevice(`${this.instagramUser}`);
             
             await this.ig.simulate.preLoginFlow();
-            await this.ig.account.login(`${this.instagramUser}`, `${this.instagramPassword}`);
+            await this.ig.account.login(this.instagramUser, this.instagramPassword);
             process.nextTick(async () => await this.ig.simulate.postLoginFlow());
   
             const data = await this.getImageBuffer(imageUrl)

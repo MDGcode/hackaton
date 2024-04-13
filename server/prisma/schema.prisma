@@ -13,26 +13,38 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// data_ora DATETIME = 'YYYY-MM-DD HH:MM:SS'
-model createPost {
-  id int @id @default(autoincrement());
-  data_ora DATETIME;
-  typeOfPost string;
-  appType string;
-  idImage? int;
-  idAccount? string;
+model CreatePost {
+  id         Int          @id @default(autoincrement())
+  data_ora   DateTime
+  typeOfPost String
+  appType    String
+  idImage    Int?
+  idAccount  String
+  AccountInfo AccountInfo? @relation(fields: [idAccount], references: [userId])
+  ImageStorage ImageStorage? @relation(fields: [idImage], references: [id])
 }
 
-model ImageStorage{
-  id int @id;
-  url string;
+model AccountInfo {
+  id Int @id @default(autoincrement())
+  userId String @unique
+  userNameIg String?
+  userNamePsw String?
+  appKeyTwitter String?
+  appSecretTwitter String?
+  accessTokenTwitter String?
+  accessSecretTwitter String?
+  CreatePosts CreatePost[]
 }
 
-model posts {
-  id int @id
-  data_ora DATETIME
-  typeOfPost string;
-  addType string;
-  appType string;
+model ImageStorage {
+  id  Int    @id @default(autoincrement())
+  url String
+  CreatePosts CreatePost[]
 }
 
+model Posts {
+  id         Int      @id @default(autoincrement())
+  data_ora   DateTime
+  typeOfPost String
+  addType    String
+}

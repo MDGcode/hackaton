@@ -9,6 +9,7 @@
     "license": "ISC",
     "dependencies": {
         "@genezio/types": "^1.0.18",
+        "@prisma/client": "^5.12.1",
         "axios": "^1.6.8",
         "cron": "^3.1.7",
         "date-fns": "^3.6.0",
