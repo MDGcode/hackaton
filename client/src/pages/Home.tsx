@@ -2,7 +2,6 @@ import { TwitterTimelineEmbed } from "react-twitter-embed";
 import TweetText from "../components/TweetText";
 import { Tweet } from "react-tweet";
 import { Timeline } from "react-twitter-widgets";
-
 export default function Home() {
   return (
     <>
