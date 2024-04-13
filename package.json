@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "@genezio-sdk/hackaton": "^1.0.0-prod",
-    "0auth": "^1.0.4",
-    "auth0": "^4.3.1"
-  }
-}
