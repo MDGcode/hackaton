@@ -9,7 +9,13 @@
     "license": "ISC",
     "dependencies": {
         "@genezio/types": "^1.0.14",
-        "node-fetch": "^3.3.2"
+        "axios": "^1.6.8",
+        "cron": "^3.1.7",
+        "date-fns": "^3.6.0",
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2",
+        "node-fetch": "^3.3.2",
+        "twitter-api-v2": "^1.16.1"
     },
     "prettier": {
         "tabWidth": 2

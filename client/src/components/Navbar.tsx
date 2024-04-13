@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { AiOutlineMenu, AiOutlineHome, AiOutlineMail } from "react-icons/ai";
 import { GoProjectRoadmap } from "react-icons/go";
 import { TbTimelineEventExclamation } from "react-icons/tb";
