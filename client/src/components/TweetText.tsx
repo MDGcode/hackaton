@@ -63,7 +63,9 @@ const TweetText: React.FC = () => {
           onChange={handleInputChange}
           placeholder="Enter your tweet..."
         />
-        <button onClick={handleButtonClick}>Post Tweet</button>
+        <button onClick={handleButtonClick} className=" font-istok">
+          Post Tweet
+        </button>
         {response && (
           <div>
             <p>Response:</p>
