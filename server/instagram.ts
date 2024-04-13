@@ -1,7 +1,5 @@
 import { GenezioDeploy } from "@genezio/types";
 import { IgApiClient } from "instagram-private-api";
-import { readFile } from 'fs';
-import { promisify } from 'util';
 import axios from "axios";
 
 @GenezioDeploy()
