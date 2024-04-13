@@ -1,4 +1,4 @@
-import { GenezioDeploy } from "@genezio/types";
+import { GenezioDeploy, GenezioMethod } from "@genezio/types";
 import { IgApiClient } from "instagram-private-api";
 import { promisify } from "util";
 import { readFile } from 'fs';
@@ -8,9 +8,21 @@ const readFileAsync = promisify(readFile);
 export class BackendService {
 
   private ig;
+  private timesFunctionRun;
 
   constructor() {
     this.ig = new IgApiClient();
+    this.timesFunctionRun = 0;
+  }
+
+  @GenezioMethod({ type: "cron", cronString: "* * * * *" })
+    sayHiEveryMinute() {
+        console.log(`${this.timesFunctionRun++} I will run every minute!`);
+    }
+
+  async login() {
+    this.ig.state.generateDevice("alexandru.georgescu22@gmail.com");
+    await this.ig.account.login("alexandru.georgescu22@gmail.com", "@lex@ndru22");
   }
 
   async UploadPhoto(captionString: string) {
@@ -23,16 +35,13 @@ export class BackendService {
       process.nextTick(async () => await this.ig.simulate.postLoginFlow());
 
       const userFeed = this.ig.feed.user(loggedInUser.pk);
-      // const myPostsFirstPage = await userFeed.items();
-
-      // const myPostsSecondPage = await userFeed.items();
       
       const path = "../client/src/assets/test.jpg";
 
       const { latitude, longitude, searchQuery } = {
         latitude: 0.0,
         longitude: 0.0,
-        searchQuery: "place",
+        searchQuery: "place"
       };
 
     const locations = await this.ig.search.location(latitude, longitude, searchQuery);
@@ -40,7 +49,7 @@ export class BackendService {
     const mediaLocation = locations[0];
     console.log(mediaLocation);
   
-    const result = await this.ig.publish.photo({
+    await this.ig.publish.photo({
       // read the file into a Buffer
       file: await readFileAsync(path),
       // optional, default ''
@@ -49,7 +58,7 @@ export class BackendService {
       location: mediaLocation,
     });
 
-  return result;
+  return readFileAsync(path);
 
   }catch(error){
     return error;
@@ -71,17 +80,16 @@ export class BackendService {
       
       console.log(file);
 
-      const test = await this.ig.publish.story({
+      const result = await this.ig.publish.story({
         file,
       });
 
-      return test;
+      return result;
 
     } catch (error) {
       console.log(error);
     }
   }
-
 
 
 }
