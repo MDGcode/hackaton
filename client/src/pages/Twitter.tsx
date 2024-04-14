@@ -25,9 +25,10 @@ export default function Twitter() {
     try {
       const res = await BackendService.createPost(
         postDate,
-        "POST",
-        "INSTAGRAM",
-        imageUrl
+        "text_only",
+        "Twitter",
+        imageUrl,
+        text
       );
       console.log(res);
       alert("Post successful");
