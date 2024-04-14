@@ -21,16 +21,20 @@ export class BackendService {
   }
 
   async createPostByType(appType: string, postType: string, idAccount: string, idImage: number | null): Promise<HTTPResponse>{
+    console.log("A INTRAT");
     try {
       const user = await this.prisma.accountInfo.findUnique({
         where: {userId: idAccount}
       })
+
+      console.log(`user : ${user}`);
 
       if (!user || !user.userNameIg || !user.userNamePsw){
         throw new Error("User Not Found!");
       }
 
       if (appType == "INSTAGRAM"){
+        console.log("a instat in appType")
         await this.ig.setAccount(user?.userNameIg, user?.userNamePsw);
 
         if (!idImage){
@@ -47,6 +51,13 @@ export class BackendService {
 
         if (postType == "STORY"){
           await this.ig.uploadStory(imageUrl.url);
+          await this.prisma.createPost.delete({
+            where: {id: idImage}
+          })
+
+          await this.prisma.createPost.delete({
+            where: {id: idImage}
+          })
           return {
             status: 200,
             message: ""
@@ -69,6 +80,7 @@ export class BackendService {
         }
 
     } catch (error) {
+      console.log(error);
       return {
         status: 401,
         message: "UNATHORIZED"
@@ -87,13 +99,12 @@ export class BackendService {
 
       if (response.length) {
         const currentDate = new Date();
+        console.log("Data pe backend");
+        console.log(currentDate);
         response.forEach(element => {
-          if (element.data_ora.getTime() === currentDate.getTime()) {
-            if (typeof element.idAccount === 'string') {
+          if (element.data_ora.getMinutes() <= currentDate.getMinutes() && element.data_ora.getHours() <= currentDate.getHours()) {
+              console.log("da");
               this.createPostByType(element.appType, element.typeOfPost, element.idAccount, element.idImage);
-            } else {
-              console.error('Id-ul contului este null.');
-            }
           }
         });
       }
