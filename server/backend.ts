@@ -27,14 +27,11 @@ export class BackendService {
         where: {userId: idAccount}
       })
 
-      console.log(`user : ${user}`);
-
       if (!user || !user.userNameIg || !user.userNamePsw){
         throw new Error("User Not Found!");
       }
 
       if (appType == "INSTAGRAM"){
-        console.log("a instat in appType")
         await this.ig.setAccount(user?.userNameIg, user?.userNamePsw);
 
         if (!idImage){
@@ -50,21 +47,26 @@ export class BackendService {
         }
 
         if (postType == "STORY"){
-          await this.ig.uploadStory(imageUrl.url);
-          await this.prisma.createPost.delete({
-            where: {id: idImage}
-          })
 
-          await this.prisma.createPost.delete({
-            where: {id: idImage}
-          })
-          return {
-            status: 200,
-            message: ""
-          }
+          await this.ig.uploadStory(imageUrl.url);
+        }
+        else if (postType == "POST"){
+          await this.ig.uploadPhoto("Am uitat sa setez si asta", imageUrl.url);
         }
 
-        await this.ig.uploadPhoto("Am uitat sa setez si asta", imageUrl.url);
+        
+        console.log("sunt aici");
+        console.log(idImage);
+
+        const deleteceva = await this.prisma.createPost.deleteMany({
+          where: {
+            idAccount: user.userId,
+            idImage: idImage,
+          }
+        })
+
+        console.log(deleteceva);
+        
 
         return {
           status: 200,
@@ -103,8 +105,8 @@ export class BackendService {
         console.log(currentDate);
         response.forEach(element => {
           if (element.data_ora.getMinutes() <= currentDate.getMinutes() && element.data_ora.getHours() <= currentDate.getHours()) {
-              console.log("da");
               this.createPostByType(element.appType, element.typeOfPost, element.idAccount, element.idImage);
+              
           }
         });
       }

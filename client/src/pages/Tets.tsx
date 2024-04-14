@@ -3,8 +3,8 @@ import { BackendService } from "@genezio-sdk/hackaton";
 const Tets = () => {
     const handleSubmit = async () => {
         const data = new Date();
-        data.setMinutes(data.getMinutes() + 2);
-        const response = await  BackendService.createPost(data, "STORY", "INSTAGRAM", "https://picsum.photos/800/800");
+        data.setMinutes(data.getMinutes() + 0);
+        const response = await  BackendService.createPost(data, "POST", "INSTAGRAM", "https://picsum.photos/800/800");
         console.log(response);
     }
     
