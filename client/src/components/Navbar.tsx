@@ -1,9 +1,7 @@
 "use client";
 import { useState } from "react";
-import { AiOutlineMenu, AiOutlineHome, AiOutlineMail } from "react-icons/ai";
-import { GoProjectRoadmap } from "react-icons/go";
-import { TbTimelineEventExclamation } from "react-icons/tb";
-import { BsPerson } from "react-icons/bs";
+import { AiOutlineMenu } from "react-icons/ai";
+
 import { BiHomeAlt2 } from "react-icons/bi";
 import { IoLogoInstagram } from "react-icons/io";
 import { useLocation } from "react-router-dom";
@@ -25,42 +23,34 @@ export default function Sidenav() {
         <a
           onClick={handleNav}
           href="/"
-          className=" w-3/4 flex justify-center items-center rounded-full shadow-lg bg-[#070807] border text-white m-2 p-4 cursor-pointer hover:scale-105 ease-in duration-200"
+          className=" w-3/4 flex justify-center border-[#FAE043] items-center rounded-full shadow-[#2b2a3a]/20 shadow-xl bg-[#271F73] border text-white m-2 p-4 cursor-pointer hover:scale-105 ease-in duration-200"
         >
-          <AiOutlineHome size={20} />
-          <span className="pl-4">Home</span>
+          <BiHomeAlt2 size={20} color="#FAE043" />
+          <span className="pl-4 font-istok">Home</span>
         </a>
         <a
           onClick={handleNav}
-          href="#timeline"
-          className=" w-3/4 flex justify-center items-center rounded-full shadow-lg bg-[#070807] border text-white m-2 p-4 cursor-pointer hover:scale-105 ease-in duration-200"
+          href="/instagram"
+          className=" w-3/4 flex justify-center border-[#FAE043] items-center rounded-full shadow-[#2b2a3a]/20 shadow-xl bg-[#271F73] border text-white m-2 p-4 cursor-pointer hover:scale-105 ease-in duration-200"
         >
-          <TbTimelineEventExclamation size={20} />
-          <span className="pl-4">Timeline</span>
+          <IoLogoInstagram size={20} color="#FAE043" />
+          <span className="pl-4 font-istok">Instagram</span>
         </a>
         <a
           onClick={handleNav}
-          href="#projects"
-          className=" w-3/4 flex justify-center items-center rounded-full shadow-lg bg-[#070807] border text-white m-2 p-4 cursor-pointer hover:scale-105 ease-in duration-200"
+          href="/x"
+          className=" w-3/4 flex justify-center border-[#FAE043] items-center rounded-full shadow-[#2b2a3a]/20 shadow-xl bg-[#271F73] border text-white m-2 p-4 cursor-pointer hover:scale-105 ease-in duration-200"
         >
-          <GoProjectRoadmap size={20} />
-          <span className="pl-4">Projects</span>
+          <FaXTwitter size={20} color="#FAE043" />
+          <span className="pl-4 font-istok">Twitter</span>
         </a>
         <a
           onClick={handleNav}
-          href="#resume"
-          className=" w-3/4 flex justify-center items-center rounded-full shadow-lg bg-[#070807] border text-white m-2 p-4 cursor-pointer hover:scale-105 ease-in duration-200"
+          href="/settings"
+          className=" w-3/4 flex justify-center border-[#FAE043] items-center rounded-full shadow-[#2b2a3a]/20 shadow-xl bg-[#271F73] border text-white m-2 p-4 cursor-pointer hover:scale-105 ease-in duration-200"
         >
-          <BsPerson size={20} />
-          <span className="pl-4">Resume</span>
-        </a>
-        <a
-          onClick={handleNav}
-          href="#contact"
-          className=" w-3/4 flex justify-center items-center rounded-full shadow-lg bg-[#070807] border text-white m-2 p-4 cursor-pointer hover:scale-105 ease-in duration-200"
-        >
-          <AiOutlineMail size={20} />
-          <span className="pl-4">Contact</span>
+          <IoSettingsOutline size={20} color="#FAE043" />
+          <span className="pl-4 font-istok">Settings</span>
         </a>
       </div>
     );
@@ -72,7 +62,7 @@ export default function Sidenav() {
           onClick={handleNav}
           className="fixed top-4 right-4 z-[99] md:hidden text-bl ue-950 outline-4 font-extrabold"
           size={20}
-          color="white"
+          color="#FAE043"
         />
         {content}
         <div className="md:block hidden fixed top-1/10 z-10 bg-[#271F73] h-full">
