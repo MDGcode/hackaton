@@ -19,7 +19,7 @@ const Login: React.FC = () => {
       console.log(response);
       console.log("Login Success");
       navigate("/");
-    } catch (error: any) {
+    } catch (error) {
       console.log("Login Failed", error);
       alert("Login Failed");
     }
@@ -30,7 +30,10 @@ const Login: React.FC = () => {
   return (
     <div className=" w-screen h-screen flex justify-center items-center bg-gradient-to-tr from-[#524AA4] to-[#3B3199]">
       <div>
-        <FiActivity size={200} className="bg-[#FAE043] rounded-full mb-24" />
+        <FiActivity
+          size={200}
+          className="bg-[#FAE043] hover:bg-[#ffbf36] duration-300 rounded-full mb-24"
+        />
         <div className="form-container scale-150 ">
           {googleLoginLoading ? (
             <p>Loading...</p>
