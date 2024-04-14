@@ -24,7 +24,7 @@ export default function Instagram() {
         "STORY",
         "INSTAGRAM",
         imageUrl,
-        text
+        ""
       );
       console.log(res);
       alert("Post successful");
