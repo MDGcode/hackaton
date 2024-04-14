@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Sidenav from "../components/Navbar";
 import { BackendService } from "@genezio-sdk/hackaton";
+import { HiMiniXMark } from "react-icons/hi2";
+
 export default function Instagram() {
   const [text, setText] = useState<string>("");
   const [postDate, setPostDate] = useState<Date>(new Date());
@@ -43,32 +45,54 @@ export default function Instagram() {
   let content;
   if (modal) {
     content = (
-      <div className="fixed w-full h-screen bg-white/10 flex flex-col justify-center items-center z-20">
-        <div className=" w-1/2 h-1/2 bg-slate-700 rounded-lg p-10">
+      <div className="fixed w-full h-screen text-white bg-white/10 flex flex-col justify-center items-center z-20">
+        <div className=" shadow-xl w-1/2 h-3/4 bg-[#393577] rounded-lg p-10">
+          <button
+            onClick={toggleModal}
+            className=" flex font-istok font-bold text-[#111111] p-2 right-0  hover:bg-[#E9D141] duration-300 ease-in rounded-full"
+          >
+            <HiMiniXMark size={35} color="white" />
+          </button>
           <h1 className=" font-bold text-4xl font-istok flex justify-center">
             Post
           </h1>
 
-          <label>
+          <label className=" text-2xl grid place-items-center">
             Text:
-            <input type="text" value={text} onChange={handleTextChange} />
+            <input
+              type="text"
+              value={text}
+              onChange={handleTextChange}
+              className=" bg-[#282828] opacity-75 border-2 border-black rounded-lg h-full"
+            />
           </label>
           <br />
-          <label>
+          <label className=" text-2xl grid place-items-center">
             Post Date:
-            <input type="datetime-local" onChange={handleDateChange} />
+            <input
+              className="bg-[#282828] opacity-75 rounded-lg border-2"
+              type="datetime-local"
+              onChange={handleDateChange}
+            />
           </label>
           <br />
-          <label>
+          <label className=" text-2xl grid place-items-center">
             Image URL:
             <input
               type="text"
               value={imageUrl}
               onChange={handleImageUrlChange}
+              className="bg-[#282828] opacity-75 rounded-lg border-2"
             />
           </label>
-          <br />
-          <button onClick={handleMediaPost}>Post to Instagram</button>
+          <div className=" text-lg grid place-items-center text-center mt-12">
+            <button
+              onClick={handleMediaPost}
+              className=" p-4 bg-[#E9D141] rounded-full text-black font-semibold"
+            >
+              Post to Instagram
+            </button>
+          </div>
         </div>
       </div>
     );
