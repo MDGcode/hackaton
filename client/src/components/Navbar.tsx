@@ -4,13 +4,10 @@ import { AiOutlineMenu } from "react-icons/ai";
 
 import { BiHomeAlt2 } from "react-icons/bi";
 import { IoLogoInstagram } from "react-icons/io";
-import { useLocation } from "react-router-dom";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoSettingsOutline } from "react-icons/io5";
 
 export default function Sidenav() {
-  const location = useLocation();
-  const { pathname } = location;
   const [nav, setNav] = useState(false);
   const handleNav = () => {
     setNav(!nav);
