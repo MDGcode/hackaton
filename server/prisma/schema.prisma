@@ -20,6 +20,7 @@ model CreatePost {
   appType    String
   idImage    Int?
   idAccount  String
+  text String?
   AccountInfo AccountInfo? @relation(fields: [idAccount], references: [userId])
   ImageStorage ImageStorage? @relation(fields: [idImage], references: [id])
 }
@@ -34,6 +35,7 @@ model AccountInfo {
   accessTokenTwitter String?
   accessSecretTwitter String?
   CreatePosts CreatePost[]
+  Posts Posts[]
 }
 
 model ImageStorage {
@@ -46,5 +48,7 @@ model Posts {
   id         Int      @id @default(autoincrement())
   data_ora   DateTime
   typeOfPost String
-  addType    String
+  appType    String
+  idAccount String
+  AccountInfo AccountInfo? @relation(fields: [idAccount], references: [userId])
 }

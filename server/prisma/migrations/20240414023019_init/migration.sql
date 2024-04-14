@@ -6,6 +6,7 @@ CREATE TABLE "CreatePost" (
     "appType" TEXT NOT NULL,
     "idImage" INTEGER,
     "idAccount" TEXT NOT NULL,
+    "text" TEXT,
 
     CONSTRAINT "CreatePost_pkey" PRIMARY KEY ("id")
 );
@@ -37,7 +38,8 @@ CREATE TABLE "Posts" (
     "id" SERIAL NOT NULL,
     "data_ora" TIMESTAMP(3) NOT NULL,
     "typeOfPost" TEXT NOT NULL,
-    "addType" TEXT NOT NULL,
+    "appType" TEXT NOT NULL,
+    "idAccount" TEXT NOT NULL,
 
     CONSTRAINT "Posts_pkey" PRIMARY KEY ("id")
 );
@@ -50,3 +52,6 @@ ALTER TABLE "CreatePost" ADD CONSTRAINT "CreatePost_idAccount_fkey" FOREIGN KEY 
 
 -- AddForeignKey
 ALTER TABLE "CreatePost" ADD CONSTRAINT "CreatePost_idImage_fkey" FOREIGN KEY ("idImage") REFERENCES "ImageStorage"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Posts" ADD CONSTRAINT "Posts_idAccount_fkey" FOREIGN KEY ("idAccount") REFERENCES "AccountInfo"("userId") ON DELETE RESTRICT ON UPDATE CASCADE;

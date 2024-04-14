@@ -1,5 +1,8 @@
 import { GenezioDeploy } from "@genezio/types";
 import { TwitterApi } from "twitter-api-v2";
+import axios from "axios";
+
+
 @GenezioDeploy()
 export class Twitter {
   private appKeyTwitter;
@@ -49,15 +52,19 @@ export class Twitter {
       return 1;
     }
   }
+
+  async getImageBuffer(url: string){
+    return (await axios.get(url, {responseType: 'arraybuffer'})).data;
+  }   
+    
   async mediaTweet() {
     try {
+
       // Create mediaID
       const mediaId = await this.twitterClient.v1.uploadMedia(
         "../../hackaton/client/src/assets/S1.png"
       );
       
-
-      return mediaId;
 
       await this.twitterClient.readWrite.v2.tweet({
         text: "Twitter is a fantastic social network. Look at this:",
