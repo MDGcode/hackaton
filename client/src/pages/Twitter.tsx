@@ -9,7 +9,6 @@ export default function Twitter() {
   const [imageUrl, setImageUrl] = useState<string>(
     "https://picsum.photos/800/800"
   );
-  const [response, setResponse] = useState(null);
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
   };
@@ -32,7 +31,6 @@ export default function Twitter() {
       );
       console.log(res);
       alert("Post successful");
-      setResponse(res);
     } catch (error) {
       alert("Post failed");
       console.log(error);
