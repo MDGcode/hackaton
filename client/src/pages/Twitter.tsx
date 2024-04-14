@@ -56,7 +56,7 @@ export default function Twitter() {
             Post
           </h1>
 
-          <label className=" text-2xl grid place-items-center">
+          <label className=" text-2xl font-istok grid place-items-center">
             Text:
             <input
               type="text"
@@ -75,7 +75,7 @@ export default function Twitter() {
             />
           </label>
           <br />
-          <label className=" text-2xl grid place-items-center">
+          <label className="font-istok text-2xl grid place-items-center">
             Image URL:
             <input
               type="text"
@@ -87,7 +87,7 @@ export default function Twitter() {
           <div className=" text-lg grid place-items-center text-center mt-12">
             <button
               onClick={handleMediaPost}
-              className=" p-4 bg-[#E9D141] rounded-full text-black font-semibold"
+              className=" p-4 bg-[#E9D141] rounded-full font-istok text-black font-semibold"
             >
               Post to Instagram
             </button>
@@ -103,7 +103,7 @@ export default function Twitter() {
       <div className=" w-screen h-screen bg-gradient-to-tr from-[#524AA4] to-[#3B3199]">
         <div className="grid place-items-center ">
           <div className="text-left -translate-x-32">
-            <h2 className="  text-gray-100 font-bold text-3xl pt-24 font-istok">
+            <h2 className="  text-gray-100 font-bold  text-3xl pt-24 font-istok">
               Post on all platforms
             </h2>
             <p className="  text-gray-100  text-lg pt-6 font-istok">

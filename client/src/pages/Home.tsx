@@ -6,10 +6,10 @@ export default function Home() {
       <Sidenav />
       <div className=" w-screen h-screen bg-gradient-to-tr from-[#524AA4] to-[#3B3199]">
         <div className="grid place-items-center ">
-          <h1 className="text-gray-100 font-bold text-5xl pt-24 font-istok">
+          <h1 className="text-gray-100 font-bold text-5xl pt-16 font-istok">
             SocialHub
           </h1>
-          <div className=" grid place-items-center ml-56">
+          <div className=" grid place-items-center ml-60">
             <div className="w-full ">
               <h2 className="  text-gray-100 font-bold text-3xl pt-16 font-istok">
                 Target Audiance

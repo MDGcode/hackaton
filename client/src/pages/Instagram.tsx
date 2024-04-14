@@ -68,7 +68,7 @@ export default function Instagram() {
           <h1 className=" font-bold text-4xl font-istok flex justify-center">
             Post
           </h1>
-          <label className=" text-2xl grid place-items-center">
+          <label className=" text-2xl grid font-istok place-items-center">
             Text:
             <input
               type="text"
@@ -78,7 +78,7 @@ export default function Instagram() {
             />
           </label>
           <br />
-          <label className=" text-2xl grid place-items-center">
+          <label className=" text-2xl font-istok grid place-items-center">
             Post Date:
             <input
               className="bg-[#282828] opacity-75 rounded-lg border-2"
@@ -87,7 +87,7 @@ export default function Instagram() {
             />
           </label>
           <br />
-          <label className=" text-2xl grid place-items-center">
+          <label className=" text-2xl font-istok grid place-items-center">
             Image URL:
             <input
               type="text"
@@ -99,13 +99,13 @@ export default function Instagram() {
           <div className=" text-lg grid grid-cols-2 place-items-center text-center mt-12">
             <button
               onClick={handleMediaPost}
-              className=" p-4 bg-[#E9D141] rounded-full text-black font-semibold"
+              className=" p-4 bg-[#E9D141] font-istok rounded-full text-black font-semibold"
             >
               Post on feed
             </button>
             <button
               onClick={handleMediaStory}
-              className=" p-4 bg-[#E9D141] rounded-full text-black font-semibold"
+              className=" p-4 bg-[#E9D141] font-istok rounded-full text-black font-semibold"
             >
               Post a story
             </button>
