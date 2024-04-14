@@ -56,9 +56,6 @@ export class BackendService {
           }
           await this.ig.uploadPhoto(text, imageUrl.url);
         }
-
-        
-        console.log("sunt aici");
         console.log(idImage);
 
         const deleteceva = await this.prisma.createPost.deleteMany({
@@ -85,7 +82,6 @@ export class BackendService {
               throw new Error("DSAD");
             }
             await this.tw.updateTwitterAccount(user.appKeyTwitter, user.accessSecretTwitter, user.accessTokenTwitter, user.appSecretTwitter);
-            console.log("dsadasda");
             if (!text){
               text = ""
             }
@@ -98,7 +94,11 @@ export class BackendService {
                 text: text,
               }
             })
+            return {status: 200, message: ""};
           }
+
+          this.tw.mediaTweet();
+          return {status: 200, message: ""};
         }
 
         return {
