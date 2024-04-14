@@ -60,7 +60,6 @@ export class InstagramService {
               console.log(publishResult);
         } catch (error) {
             console.log(error);
-            return error;
         }
     }
 

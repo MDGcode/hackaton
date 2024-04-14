@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Instagram from "./pages/Instagram";
 import Twitter from "./pages/Twitter";
 import Settings from "./pages/Settings";
+import Tets from "./pages/Tets"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/instagram" element={<Instagram />} />
         <Route path="/x" element={<Twitter />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/test" element={<Tets />} />
       </Routes>
     </Router>
   );

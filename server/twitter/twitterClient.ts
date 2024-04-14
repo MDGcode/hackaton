@@ -1,5 +1,8 @@
 import { GenezioDeploy } from "@genezio/types";
 import { TwitterApi } from "twitter-api-v2";
+import axios from "axios";
+
+
 @GenezioDeploy()
 export class Twitter {
   private appKeyTwitter;
@@ -22,17 +25,6 @@ export class Twitter {
       accessToken: this.AccessTokenTwitter,
       accessSecret: this.AccessSecretTwitter,
     });
-    // this.twitterClient = new TwitterApi({
-    //   appKey: "qnmaXEmwHIF9Eqei0XMv7X0Qe",
-    //   appSecret: "YnXBy5z2XUpBLHSua9eIoLoMbLg7PPkaXvh73gT7IYbHYxBtsE",
-    //   accessToken: "3903822798-n0bcLqRoRAqkHtSFAUDnPFBr4mcP8wd77ebjZR9",
-    //   accessSecret: "sGYi5PDRk10ZznOqMvYa38sfFs8aBNmCKKcVscsgv9Pym",
-    // });
-
-    // this.twitterClient = new TwitterApi({
-    //   username: "cevacevadetest@gmail.com",
-    //   password: "auleusufletu1",
-    // });
     this.readOnlyClient = this.twitterClient.readOnly;
   }
 
@@ -60,12 +52,19 @@ export class Twitter {
       return 1;
     }
   }
+
+  async getImageBuffer(url: string){
+    return (await axios.get(url, {responseType: 'arraybuffer'})).data;
+  }   
+    
   async mediaTweet() {
     try {
+
       // Create mediaID
       const mediaId = await this.twitterClient.v1.uploadMedia(
         "../../hackaton/client/src/assets/S1.png"
       );
+      
 
       await this.twitterClient.readWrite.v2.tweet({
         text: "Twitter is a fantastic social network. Look at this:",
