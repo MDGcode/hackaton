@@ -26,7 +26,7 @@ export default function Instagram() {
       const res = await BackendService.createPost(
         postDate,
         "POST",
-        "Instagram",
+        "INSTAGRAM",
         imageUrl,
         text
       );
