@@ -5,15 +5,47 @@ import { BackendService } from "@genezio-sdk/hackaton";
 export default function Settings() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [appToken, setAppToken] = useState<string>("");
+  const [appSecret, setAppSecret] = useState<string>("");
+  const [accessToken, setAccesToken] = useState<string>("");
+  const [accessSecret, setAccesSecret] = useState<string>("");
+
+  const handleAccessSecretChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAccesSecret(e.target.value);
+  };
+  const handleAccessTokenChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAccesToken(e.target.value);
+  };
   const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
   };
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
+  const handleAppTokenChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAppToken(e.target.value);
+  };
+  const handleSetAppSecret = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAppSecret(e.target.value);
+  };
   const handleChangeSettingsInsta = async () => {
     try {
       const res = await BackendService.updateIgCredentials(username, password);
+      console.log(res);
+      alert("Change successful");
+    } catch (error) {
+      alert("Change failed");
+      console.log(error);
+    }
+  };
+  const handleChangeSettingsTwitter = async () => {
+    try {
+      const res = await BackendService.updateTwitterCredentials(
+        appToken,
+        appSecret,
+        accessToken,
+        accessSecret
+      );
       console.log(res);
       alert("Change successful");
     } catch (error) {
@@ -64,8 +96,8 @@ export default function Settings() {
                 APP_TOKEN:
                 <input
                   type="text"
-                  value={username}
-                  onChange={handleUserNameChange}
+                  value={appToken}
+                  onChange={handleAppTokenChange}
                   className="bg-[#282828] opacity-75 rounded-lg border-2 ml-2"
                 />
               </label>
@@ -75,8 +107,8 @@ export default function Settings() {
                 APP_SECRET:
                 <input
                   type="text"
-                  value={password}
-                  onChange={handlePasswordChange}
+                  value={appSecret}
+                  onChange={handleSetAppSecret}
                   className="bg-[#282828] opacity-75 rounded-lg border-2"
                 />
               </label>
@@ -86,8 +118,8 @@ export default function Settings() {
                 ACCESS_TOKEN:
                 <input
                   type="text"
-                  value={username}
-                  onChange={handleUserNameChange}
+                  value={accessToken}
+                  onChange={handleAccessTokenChange}
                   className="bg-[#282828] opacity-75 rounded-lg border-2 ml-2"
                 />
               </label>
@@ -97,14 +129,17 @@ export default function Settings() {
                 ACCESS_SECRET:
                 <input
                   type="text"
-                  value={password}
-                  onChange={handlePasswordChange}
+                  value={accessSecret}
+                  onChange={handleAccessSecretChange}
                   className="bg-[#282828] opacity-75 rounded-lg border-2"
                 />
               </label>
             </div>
           </div>
-          <button className=" flex justify-end px-4 py-2 bg-[#E9D141] rounded-full mt-10 text-black text-lg font-semibold">
+          <button
+            onClick={handleChangeSettingsTwitter}
+            className=" flex justify-end px-4 py-2 bg-[#E9D141] rounded-full mt-10 text-black text-lg font-semibold"
+          >
             Save X changes
           </button>
         </div>

@@ -9,17 +9,35 @@ export default function Home() {
           <h1 className="text-gray-100 font-bold text-5xl pt-24 font-istok">
             SocialHub
           </h1>
-          <div className="text-left -translate-x-32">
-            <h2 className="  text-gray-100 font-bold text-3xl pt-24 font-istok">
-              Post on all platforms
-            </h2>
-            <p className="  text-gray-100  text-lg pt-6 font-istok">
-              Post on Intagram and X (Twitter) in the same time and interact
-              with your followers.
-            </p>
-            <button className=" flex font-istok font-bold text-[#111111] p-5 bg-[#E9D141] hover:bg-[#bda834] duration-300 ease-in rounded-full mt-10">
-              Schedule post
-            </button>
+          <div className=" grid place-items-center ml-56">
+            <div className="w-full ">
+              <h2 className="  text-gray-100 font-bold text-3xl pt-16 font-istok">
+                Target Audiance
+              </h2>
+              <p className="  text-gray-100  text-lg pt-6 font-istok">
+                This platform is addressing to every content creator and
+                business people who want to manage multiple social media
+                platforms.
+              </p>
+            </div>
+            <div className="w-full ">
+              <h2 className="  text-gray-100 font-bold text-3xl pt-16 font-istok">
+                Our aim
+              </h2>
+              <p className=" text-left  text-gray-100  text-lg pt-6 font-istok w-full">
+                Our aim is to ease the work of managing posts and followers.
+              </p>
+            </div>
+            <div className="w-full ">
+              <h2 className="  text-gray-100 font-bold text-3xl pt-16 font-istok">
+                Future plans
+              </h2>
+              <p className=" text-left  text-gray-100  text-lg pt-6 font-istok w-3/4">
+                In the future we plan to implement more functions for our users.
+                A few examples would be: more options for the apps that we have,
+                support for new apps and many more to come.{" "}
+              </p>
+            </div>
           </div>
         </div>
       </div>
