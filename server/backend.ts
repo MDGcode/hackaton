@@ -101,12 +101,10 @@ export class BackendService {
 
       if (response.length) {
         const currentDate = new Date();
-        console.log("Data pe backend");
         console.log(currentDate);
         response.forEach(element => {
           if (element.data_ora.getMinutes() <= currentDate.getMinutes() && element.data_ora.getHours() <= currentDate.getHours()) {
-              this.createPostByType(element.appType, element.typeOfPost, element.idAccount, element.idImage);
-              
+              this.createPostByType(element.appType, element.typeOfPost, element.idAccount, element.idImage); 
           }
         });
       }
