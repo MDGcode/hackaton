@@ -26,8 +26,9 @@ export default function Instagram() {
       const res = await BackendService.createPost(
         postDate,
         "POST",
-        "INSTAGRAM",
-        imageUrl
+        "Instagram",
+        imageUrl,
+        text
       );
       console.log(res);
       alert("Post successful");
@@ -63,7 +64,7 @@ export default function Instagram() {
               type="text"
               value={text}
               onChange={handleTextChange}
-              className=" bg-[#282828] opacity-75 border-2 border-black rounded-lg h-full"
+              className=" bg-[#644a4a] opacity-75 border-2 border-black rounded-lg h-full"
             />
           </label>
           <br />

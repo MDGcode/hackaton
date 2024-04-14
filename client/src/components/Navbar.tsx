@@ -38,7 +38,7 @@ export default function Sidenav() {
         </a>
         <a
           onClick={handleNav}
-          href="/x"
+          href="/"
           className=" w-3/4 flex justify-center border-[#FAE043] items-center rounded-full shadow-[#2b2a3a]/20 shadow-xl bg-[#271F73] border text-white m-2 p-4 cursor-pointer hover:scale-105 ease-in duration-200"
         >
           <FaXTwitter size={20} color="#FAE043" />
@@ -46,7 +46,7 @@ export default function Sidenav() {
         </a>
         <a
           onClick={handleNav}
-          href="/settings"
+          href="/"
           className=" w-3/4 flex justify-center border-[#FAE043] items-center rounded-full shadow-[#2b2a3a]/20 shadow-xl bg-[#271F73] border text-white m-2 p-4 cursor-pointer hover:scale-105 ease-in duration-200"
         >
           <IoSettingsOutline size={20} color="#FAE043" />
@@ -62,7 +62,7 @@ export default function Sidenav() {
           onClick={handleNav}
           className="fixed top-4 right-4 z-[99] md:hidden text-bl ue-950 outline-4 font-extrabold"
           size={20}
-          color="#FAE043"
+          color="white"
         />
         {content}
         <div className="md:block hidden fixed top-1/10 z-10 bg-[#271F73] h-full">
