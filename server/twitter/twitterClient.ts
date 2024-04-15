@@ -2,7 +2,6 @@ import { GenezioDeploy } from "@genezio/types";
 import { TwitterApi } from "twitter-api-v2";
 import axios from "axios";
 
-
 @GenezioDeploy()
 export class Twitter {
   private appKeyTwitter;
@@ -13,12 +12,10 @@ export class Twitter {
   private twitterClient: TwitterApi;
   private readOnlyClient;
   constructor() {
-    this.appKeyTwitter = "zaK6zyUOHmBRffLQsz48OiBB6";
-    this.appSecretTwitter =
-      "j2PnstAcN5m1B58xQ4CSRH6Sev8d9PKGlS38CJ8EpOYTMnSeTw";
-    this.AccessTokenTwitter =
-      "1779182497764372480-b9L8yCNSbMaPwkyUh2vkHsa5hvDuYI";
-    this.AccessSecretTwitter = "OAYB7FStyOqqWGOLBfU1GZH1uD12eSwETua8LrLHzuP4l";
+    this.appKeyTwitter = process.env.APP_ID;
+    this.appSecretTwitter = process.env.APP_SECRET;
+    this.AccessTokenTwitter = process.env.ACCESS_TOKEN;
+    this.AccessSecretTwitter = process.env.ACCESS_SECRET;
     this.twitterClient = new TwitterApi({
       appKey: this.appKeyTwitter,
       appSecret: this.appSecretTwitter,
@@ -53,18 +50,16 @@ export class Twitter {
     }
   }
 
-  async getImageBuffer(url: string){
-    return (await axios.get(url, {responseType: 'arraybuffer'})).data;
-  }   
-    
+  async getImageBuffer(url: string) {
+    return (await axios.get(url, { responseType: "arraybuffer" })).data;
+  }
+
   async mediaTweet() {
     try {
-
       // Create mediaID
       const mediaId = await this.twitterClient.v1.uploadMedia(
         "../../hackaton/client/src/assets/S1.png"
       );
-      
 
       await this.twitterClient.readWrite.v2.tweet({
         text: "Twitter is a fantastic social network. Look at this:",
