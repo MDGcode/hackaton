@@ -15,8 +15,8 @@ export class InstagramService {
     this.ig = new IgApiClient();
 
     // Ig Account for Testing
-    this.instagramUser = "ceva7700";
-    this.instagramPassword = "aoleusufletu1";
+    this.instagramUser = process.env.INSTAGRAMUSER;
+    this.instagramPassword = process.env.INSTAGRAMPASS;
 
     this.prisma = new PrismaClient();
   }
